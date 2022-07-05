@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+    <head th:replace="layout/layout :: head">
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container-fluid" layout:fragment="page-content">            
+            <nav class="navbar navbar-light bg-light m-2">
+                <h4 class="ps-3"><i class="fa-solid fa-mobile-retro me-2"></i>Celulares</h4>
+            </nav>
+            <div class="container mt-3">
+                <h3 th:text="${titulo}"></h3>
+                <hr>
+                <form th:action="@{/producto/save}" method="post" enctype="multipart/form-data" th:object="${producto}">                    
+                    <div class="mb-3">                        
+                        <label for="recipient-name" class="col-form-label">Proveedor:</label>
+                        <select th:field="*{proveedor}" id="proveedor" class="form-select">
+                            <option th:each="edit:${proveedor}" th:value="${edit.id}" th:text="${edit.nombre}"></option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <input type="hidden" th:field="*{id}">
+                               <label for="recipient-name" class="col-form-label">Nombre:</label>
+                        <input type="text" th:field="*{nombre}" class="form-control" name="titulo">
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Precio Costo:</label>
+                        <input type="text" th:field="*{preciocosto}" class="form-control" name="preciocosto">
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Precio Venta:</label>
+                        <input type="text" th:field="*{precioventa}" class="form-control" name="precioventa">
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Cantidad:</label>
+                        <input type="text" th:field="*{cantidad}" class="form-control" name="cantidad">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Foto:</label>
+                        <input type="file" class="form-control" id="imagen" name="imagen">
+                    </div>
+                    <a th:href="@{/producto}" class="btn btn-secondary" >Cancel</a>
+                    <input type="submit" class="btn btn-primary"/>
+                </form>
+            </div>
+        </div>
+        <!--OTRO SCRIPTS PARA PAGINAS-->
+    <th:block layout:fragment="page-scripts">
+
+    </th:block>
+
+
+</body>
+</html>

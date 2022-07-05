@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+    <head th:replace="layout/layout :: head">
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container-fluid" layout:fragment="page-content">            
+            <nav class="navbar navbar-light bg-light m-2">
+                <h4 class="ps-3"><i class="fa-solid fa-house me-2" ></i>Dashboard</h4>
+            </nav>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-4 mt-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Proveedores</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <a th:href="@{/proveedor}" class="btn btn-primary align-items-center">
+                                    <strong class="me-2">Proveedores</strong><i class="fa-solid fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mt-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Clientes</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <a th:href="@{/cliente}" class="btn btn-primary align-items-center">
+                                    <strong class="me-2">Clientes</strong><i class="fa-solid fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mt-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Productos</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <a th:href="@{/producto}" class="btn btn-primary align-items-center">
+                                    <strong class="me-2">Productos</strong><i class="fa-solid fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-4 mt-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Cabecera</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <a th:href="@{/cabecera}" class="btn btn-primary align-items-center">
+                                    <strong class="me-2">Cabecera</strong><i class="fa-solid fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mt-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Cuerpo</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <a th:href="@{/cuerpo}" class="btn btn-primary align-items-center">
+                                    <strong class="me-2">Cuerpo</strong><i class="fa-solid fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>                
+
+                </div>
+                
+            </div>
+        </div>
+    <th:block layout:fragment="page-scripts">
+
+    </th:block>
+</body>
+</html>
