@@ -1,5 +1,5 @@
-
 package com.ucs.appWings2022.security;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,23 +18,28 @@ public class SecurityConfigConfiguration extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-    
+
     @Autowired
-    public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception{
+    public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception {
         build.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
-    
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/editar/**", "/agregar/**", "/eliminar")
+                .hasRole("ADMIN")
+                .antMatchers("/editar/**", "/agregar/**", "/eliminar")
+                .hasRole("USER")
                 .antMatchers("/")
-                .hasAnyRole("USER", "ADMIN")
+                .permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/login")
+                .defaultSuccessUrl("/mantenimiento")
                 .and()
                 .exceptionHandling().accessDeniedPage("/errors/403");
     }

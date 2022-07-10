@@ -4,13 +4,21 @@
  */
 package com.ucs.appWings2022.controller;
 
+import com.lowagie.text.DocumentException;
 import com.ucs.appWings2022.entity.Producto;
 import com.ucs.appWings2022.serviceImpl.ProductoService;
 import com.ucs.appWings2022.serviceImpl.ProveedorService;
+import com.ucs.appWings2022.util.reportes.LibroExporterPDF;
+import com.ucs.appWings2022.util.reportes.ProductoExporterExcel;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -103,5 +111,44 @@ public class ProductoController {
        productoService.delete(idproducto);
         return "redirect:/producto";
     }
+    
+    @GetMapping("/exportarPDF")
+    public void exportarListadoDeEmpleadosEnPDF(HttpServletResponse response) throws DocumentException, IOException {
+        response.setContentType("application/pdf");
+
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String fechaActual = dateFormatter.format(new Date());
+
+        String cabecera = "Content-Disposition";
+        String valor = "attachment; filename=Productos_" + fechaActual + ".pdf";
+
+        response.setHeader(cabecera, valor);
+
+        List<Producto> producto = productoService.readAll();
+
+        LibroExporterPDF exporter = new LibroExporterPDF(producto);
+        exporter.exportar(response);
+    }
+    
+    
+    @GetMapping("/exportarExcel")
+    public void exportarListadoDeEmpleadosEnExcel(HttpServletResponse response) throws DocumentException, IOException {
+        response.setContentType("application/octet-stream");
+
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String fechaActual = dateFormatter.format(new Date());
+
+        String cabecera = "Content-Disposition";
+        String valor = "attachment; filename=Productos_" + fechaActual + ".xlsx";
+
+        response.setHeader(cabecera, valor);
+
+        List<Producto> libros = productoService.readAll();
+
+        ProductoExporterExcel exporter = new ProductoExporterExcel(libros);
+        exporter.exportar(response);
+    }
+    
+    
     
 }

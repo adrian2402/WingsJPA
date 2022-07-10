@@ -13,7 +13,7 @@ public class EncriptarPassword {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-            String password = "12345";
+        String password = "12345";
         System.out.println("password: " + password);
         System.out.println("password encriptado:" + encriptarPassword(password));
     }

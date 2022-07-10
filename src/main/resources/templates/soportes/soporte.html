@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Soporte | WingsMobile</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="css/estilo.css"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200&display=swap" rel="stylesheet">
+
+    </head>
+    <body>
+
+        <div  style="width: 100%" id="contenedor">
+
+            <!-- Navbar  -->
+            <nav class="navbar navbar-expand-lg fixed-top ">
+                <div class="container">
+                    <img src="images/logo.png" alt=""/>
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item ">
+                                <a class="nav-link" th:href="@{tienda}"><i class="fa-solid fa-tiend me-2"></i>Tienda</a>
+                            </li>
+                            <li class="nav-item">
+
+                                <a class="nav-link" th:href="@{/nosotros}"><i class="fa-solid fa-nosotro me-2"></i>Nosotros</a>
+
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link " th:href="@{/blog}">Blog</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ">Eventos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " th:href="@{/soporte}">Soporte</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link ">Ayuda</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " th:href="@{/login}"><i class="fa-solid fa-logi me-2"></i>Login</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Navbar  -->
+
+            <!-- Contenedor -->
+            <section class="support-1">
+                <div class="container">
+                    <div class="row">
+                        <div >
+                            <div class="col mb-9">
+                                <div >
+                                    <img src="images/soporte.jpeg"    class="d-block w-100" width="300" height="600" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="col-md-12 text-left">
+                            <h1>¡Estamos para apoyarte!</h1>                              
+                            <hr style="display: inline-block; width: 5%; border: 1px solid #00b1e2;">
+                            <p>
+                            <h4> 
+                                Si tienes alguna duda o requieres un soporte personalizado, 
+                                ingresa los datos del incoveniente que tienes en el menú que te presentamos a continuación.
+                            </h4>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-8 pt-5">
+                        <div class="col-md-10">
+                            <form name="formSupport" class="form-support row">
+                                <div class="col-md-6">
+                                    <input type="text" class=" mb-3" name="nameUser" required="" maxlength="30" placeholder="Nombre y Apellidos">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class=" mb-3" name="emailUser" required="" maxlength="80" placeholder="example123@example.com">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="tel" class=" mb-3" name="phoneUser" maxlength="30" required="" placeholder="número de teléfono">
+                                </div>
+                                <div class="col-md-6">
+                                    <select class="" name="reference" id="" required="">
+                                        <option value="">Distrito</option>
+                                        <option value="argentina">Villa el Salvador</option>
+                                        <option value="bolivia">Miraflores</option>
+                                        <option value="brazil">San Martin de Porres</option>
+                                        <option value="chile">Chorrillos</option>
+                                        <option value="colombia">Rimac</option>
+                                        <option value="costa_rica">San Miguel</option>
+                                        <option value="republica_dominicana">Santiago de Surco</option>
+                                    </select>
+                                </div>
+                                <br>
+                                <div><!--poner el required en el desplegable y si se va a hacer con radio-buttons o con un  dropdown-->
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-12 pt-4 text-left pb-3">
+                                                <h5>Selecciona una de las siguientes opciones de consulta</h5>
+                                            </div>
+                                            <div class="col-md-6 text-left pb-3"><input type="radio" name="subjectEmail" value="consulta"> Consulta</div>
+                                            <div class="col-md-6 text-left pb-3"><input type="radio" name="subjectEmail" value="pqrs"> Petición, queja ,reclamo o sugerencia.</div>
+                                            <div class="col-md-6 text-left pb-3"><input type="radio" name="subjectEmail" value="garantia"> Garantía de los Productos</div>
+                                            <div class="col-md-6 text-left pb-3"><input type="radio" name="subjectEmail" value="retraso_pedido"> Retraso en pedido</div>
+                                            <div class="col-md-6 text-left pb-3"><input type="radio" name="subjectEmail" value="soporte_pago"> Pagos en cuotas</div>
+                                            <div class="col-md-6 text-left pb-3"><input type="radio" name="subjectEmail" value="serv_tec"> Servicio técnico</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <input type="submit" name="submit" value="ENVIAR" class="btn-enviar">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Contenedor -->
+            <footer class="p-3 mb-2 bg-dark text-white" >  <p align="center"> &copy Derechos Reservados Lima-Perú-2022 </p>
+                <p align="center"><i class="fa-brands fa-facebook"></i>  <i class="fa-brands fa-instagram"> </i>  <i class="fa-brands fa-twitter"></i> <i class="fa-brands fa-whatsapp"></i></p> 
+            </footer>
+            <!-- Footer -->
+        </div>
+
+
+        <script src="js/jquery-3.6.0.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
+
+    </body>
+</html>

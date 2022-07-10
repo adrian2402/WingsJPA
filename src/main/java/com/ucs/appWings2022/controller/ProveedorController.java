@@ -4,8 +4,18 @@
  */
 package com.ucs.appWings2022.controller;
 
+import com.lowagie.text.DocumentException;
 import com.ucs.appWings2022.entity.Proveedor;
 import com.ucs.appWings2022.serviceImpl.ProveedorService;
+import com.ucs.appWings2022.util.reportes.LibroExporterPDF;
+import com.ucs.appWings2022.util.reportes.ProveedorExporterExcel;
+import com.ucs.appWings2022.util.reportes.ProveedorExporterPDF;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -66,5 +76,42 @@ public class ProveedorController {
        productoService.delete(idproveedor);
         return "redirect:/proveedor";
     }
+    
+    @GetMapping("/exportarPDF")
+    public void exportarListadoDeEmpleadosEnPDF(HttpServletResponse response) throws DocumentException, IOException {
+        response.setContentType("application/pdf");
+
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String fechaActual = dateFormatter.format(new Date());
+
+        String cabecera = "Content-Disposition";
+        String valor = "attachment; filename=Proveedores_" + fechaActual + ".pdf";
+
+        response.setHeader(cabecera, valor);
+
+        List<Proveedor> producto = productoService.readAll();
+
+        ProveedorExporterPDF exporter = new ProveedorExporterPDF(producto);
+        exporter.exportar(response);
+    }
+    
+    @GetMapping("/exportarExcel")
+    public void exportarListadoDeEmpleadosEnExcel(HttpServletResponse response) throws DocumentException, IOException {
+        response.setContentType("application/octet-stream");
+
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String fechaActual = dateFormatter.format(new Date());
+
+        String cabecera = "Content-Disposition";
+        String valor = "attachment; filename=Proveedores_" + fechaActual + ".xlsx";
+
+        response.setHeader(cabecera, valor);
+
+        List<Proveedor> libros = productoService.readAll();
+
+        ProveedorExporterExcel exporter = new ProveedorExporterExcel(libros);
+        exporter.exportar(response);
+    }
+    
     
 }
